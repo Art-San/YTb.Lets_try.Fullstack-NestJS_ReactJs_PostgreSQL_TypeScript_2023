@@ -16,7 +16,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
     TransactionModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
-      // в документации этот вариант полностью есть
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
@@ -28,7 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
         synchronize: true,
         entities: [__dirname + '/**/*.entity{.js, .ts}']
       }),
-      inject: [ConfigService] // ПОСЛЕ ДОБАВЛЕНИЯ решилась эта проблема TypeError: Cannot read properties of undefined (reading 'get')
+      inject: [ConfigService]
     })
   ],
   controllers: [AppController],
