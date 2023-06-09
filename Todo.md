@@ -10,3 +10,7 @@ DB_PASSWORD='8225991'
 <!-- npm i --save class-validator class-transformer -->
 
 <!-- npm i argon2 хешировать пароль -->
+
+<!-- npm install --save @nestjs/passport passport passport-local
+  -- npm install --save-dev @types/passport-local
+ из документации https://docs.nestjs.com/recipes/passport#:~:text=%24%20npm%20install%20%2D%2Dsave%20%40nestjs/passport%20passport%20passport%2Dlocal -->
