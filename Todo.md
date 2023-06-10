@@ -18,3 +18,5 @@ DB_PASSWORD='8225991'
  <!-- npm install --save @nestjs/jwt passport-jwt
  npm install --save-dev @types/passport-jwt 
  https://docs.nestjs.com/recipes/passport#:~:text=npm%20install%20%2D%2Dsave%20%40nestjs/jwt%20passport%2Djwt-->
+
+ <!-- "useTabs": true -->
