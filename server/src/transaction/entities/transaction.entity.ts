@@ -6,22 +6,21 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm'
 
 @Entity()
 export class Transaction {
-  @PrimaryColumn({ name: 'transaction_id' })
-  //   @PrimaryGeneratedColumn({ name: 'transaction_id' })
+  // @PrimaryColumn({ name: 'transaction_id' }) // в видео он написал так (значение NULL в столбце "transaction_id" отношения "transaction" нарушает ограничение NOT NULL)
+  @PrimaryGeneratedColumn({ name: 'transaction_id' })
   id: number
 
   @Column()
   title: string
 
   @Column({ nullable: true })
-  type: number
+  type: string
 
   @ManyToOne(() => User, (user) => user.transactions)
   @JoinColumn({ name: 'user_id' })

@@ -37,6 +37,7 @@ export class CategoryService {
         user: { id }
       },
       relations: {
+        // связаные транзакции тоже должны быть включены врезультат
         transactions: true
       }
     })
