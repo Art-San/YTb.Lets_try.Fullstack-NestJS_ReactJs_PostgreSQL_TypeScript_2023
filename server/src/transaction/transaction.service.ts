@@ -37,7 +37,7 @@ export class TransactionService {
         createdAt: 'DESC' // сортировка последнии первые
       }
     })
-    console.log(transactions)
+    // console.log(transactions)
     return transactions
   }
 
@@ -68,6 +68,27 @@ export class TransactionService {
     })
     if (!transaction) throw new NotFoundException('Transaction not found')
     return await this.transactionRepository.delete(id)
+  }
+
+  async findAllWithPagination(id: number, page: number, limit: number) {
+    const transactions = await this.transactionRepository.find({
+      where: {
+        user: { id }
+      },
+      relations: {
+        // много лишней инфы
+        category: true,
+        user: {
+          transactions: true
+        }
+      },
+      order: {
+        createdAt: 'DESC'
+      },
+      take: limit, // бери только количество определенное лимитом
+      skip: (page - 1) * limit // при переключение страницы пропустьть нужное количество
+    })
+    return transactions
   }
 }
 

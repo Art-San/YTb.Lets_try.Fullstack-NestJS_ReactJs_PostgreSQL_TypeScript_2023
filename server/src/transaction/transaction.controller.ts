@@ -9,7 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
   UseGuards,
-  Req
+  Req,
+  Query
 } from '@nestjs/common'
 import { TransactionService } from './transaction.service'
 import { CreateTransactionDto } from './dto/create-transaction.dto'
@@ -26,6 +27,24 @@ export class TransactionController {
   create(@Body() createTransactionDto: CreateTransactionDto, @Req() req) {
     return this.transactionService.create(createTransactionDto, +req.user.id)
   }
+
+  //===============Важно чтоб этот @Get('pagination') роут был выше этого @Get()==========================
+  // url/transaction/pagination?page=1&limit=3
+  @Get('pagination')
+  @UseGuards(JwtAuthGuard)
+  findAllWithPagination(
+    @Req() req,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 3
+  ) {
+    return this.transactionService.findAllWithPagination(
+      +req.user.id,
+      +page,
+      limit
+    )
+  }
+
+  //===================================================================================
 
   @Get()
   @UseGuards(JwtAuthGuard)
