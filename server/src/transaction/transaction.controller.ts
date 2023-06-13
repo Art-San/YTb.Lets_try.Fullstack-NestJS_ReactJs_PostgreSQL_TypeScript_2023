@@ -29,6 +29,12 @@ export class TransactionController {
     return this.transactionService.create(createTransactionDto, +req.user.id)
   }
 
+  @Get(':type/find')
+  @UseGuards(JwtAuthGuard)
+  findAllByType(@Req() req, @Param('type') type: string) {
+    return this.transactionService.findAllByType(+req.user.id, type)
+  }
+
   //===============Важно чтоб этот @Get('pagination') роут был выше этого @Get()==========================
   // url/transaction/pagination?page=1&limit=3
   @Get('pagination')

@@ -22,7 +22,9 @@ export class CategoryService {
       title: createCategoryDto.title
     })
     if (isExist.length)
-      throw new BadRequestException('This category already exist!')
+      throw new BadRequestException(
+        'This category already exist!. Ошибка из category.service create'
+      )
 
     const newCategory = {
       title: createCategoryDto.title,
@@ -51,7 +53,10 @@ export class CategoryService {
         transactions: true
       }
     })
-    if (!category) throw new NotFoundException('Category not found')
+    if (!category)
+      throw new NotFoundException(
+        'Category not found. Ошибка из category.service findOne'
+      )
     return category
   }
 
@@ -59,7 +64,10 @@ export class CategoryService {
     const category = await this.categoryRepository.findOne({
       where: { id }
     })
-    if (!category) throw new NotFoundException('Category not found')
+    if (!category)
+      throw new NotFoundException(
+        'Category not found. Ошибка из category.service update'
+      )
     return await this.categoryRepository.update(id, updateCategoryDto)
   }
 
@@ -67,7 +75,8 @@ export class CategoryService {
     const category = await this.categoryRepository.findOne({
       where: { id }
     })
-    if (!category) throw new NotFoundException('Category not found')
+    if (!category)
+      throw new NotFoundException('Category not found. category.service remove')
     return await this.categoryRepository.delete(id)
   }
 }

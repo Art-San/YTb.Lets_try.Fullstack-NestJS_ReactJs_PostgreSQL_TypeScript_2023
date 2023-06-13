@@ -23,7 +23,10 @@ export class TransactionService {
       category: { id: +createTransactionDto.category },
       user: { id }
     }
-    if (!newTransaction) throw new BadRequestException('Somethins went wrong')
+    if (!newTransaction)
+      throw new BadRequestException(
+        'Somethins went wrong. Ошибка из transaction.service create'
+      )
 
     return await this.transactionRepository.save(newTransaction)
   }
@@ -50,7 +53,10 @@ export class TransactionService {
         category: true
       }
     })
-    if (!transaction) throw new NotFoundException('Transaction not found')
+    if (!transaction)
+      throw new NotFoundException(
+        'Transaction not found, Ошибка из transaction.service findOne'
+      )
     return transaction
   }
 
@@ -58,7 +64,10 @@ export class TransactionService {
     const transaction = await this.transactionRepository.findOne({
       where: { id }
     })
-    if (!transaction) throw new NotFoundException('Transaction not found')
+    if (!transaction)
+      throw new NotFoundException(
+        'Transaction not found. Ошибка из transaction.service update'
+      )
     return await this.transactionRepository.update(id, updateTransactionDto)
   }
 
@@ -66,7 +75,10 @@ export class TransactionService {
     const transaction = await this.transactionRepository.findOne({
       where: { id }
     })
-    if (!transaction) throw new NotFoundException('Transaction not found')
+    if (!transaction)
+      throw new NotFoundException(
+        'Transaction not found. Ошибка из transaction.service remove '
+      )
     return await this.transactionRepository.delete(id)
   }
 
@@ -89,6 +101,18 @@ export class TransactionService {
       skip: (page - 1) * limit // при переключение страницы пропустьть нужное количество
     })
     return transactions
+  }
+
+  async findAllByType(id: number, type: string) {
+    const transactions = await this.transactionRepository.find({
+      where: {
+        user: { id },
+        type
+      }
+    })
+
+    const total = transactions.reduce((acc, obj) => acc + obj.amount, 0)
+    return total
   }
 }
 

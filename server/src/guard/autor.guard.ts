@@ -30,7 +30,7 @@ export class AuthorGuard implements CanActivate {
         break
 
       default:
-        throw new NotFoundException('Something went wrong...')
+        throw new NotFoundException('Ошибка эта в autor.guard, в блоке switch')
     }
 
     const user = request.user
@@ -38,7 +38,11 @@ export class AuthorGuard implements CanActivate {
     if (entity && user && entity.user.id === user.id) {
       return true
     }
-    throw new BadRequestException('do not touch your data')
+    throw new BadRequestException(
+      'Данные не твои, не лезь. Ошибка эта из autor.guard'
+    )
     // return false
   }
 }
+
+// 21:20
