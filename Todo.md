@@ -25,10 +25,79 @@ DB_PASSWORD='8225991'
 
  <!-- //=================================================================== -->
 
+Ссылка на видео https://www.youtube.com/watch?v=Wk2I17jgSUw
+
 <!-- https://vitejs.dev/guide/ -->
 
-<!-- 1.
+<!--==== 1 ====
  npm create vite@latest ./  -->
 
-<!-- 2
+==================================
+
+<!--==== 2 ====
 npm instal -->
+
+==================================
+
+<!--==== 3 ====
+на этой странице https://tailwindcss.com/docs/installation/framework-guides
+НУЖНО выбрать Vite -->
+
+====================================
+
+<!-- Пункт 2
+Install Tailwind CSS
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p -->
+
+<!-- Пункт 3
+
+в конфиге добавляем
+content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ], -->
+
+<!-- Лункт 4
+
+в index.css добовляем дерективы стилей
+@tailwind base;
+@tailwind components;
+@tailwind utilities; -->
+
+<!-- Пункт 5
+
+Добовляем
+export default function App() {
+  return (
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  )
+}
+
+и Перезапускаем проэкт -->
+
+=============================================
+
+<!-- ==== 4 ====
+подключаем шрифты
+выбираем шрифты копируем ссылку
+и вставляем index.html
+
+а tailwind.confif.js прописываем следующие только немного по свойму font-family: 'Roboto', sans-serif;
+
+extend: {
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif']
+      } -->
+
+<!-- ==== 5 ====
+ставим плагин для форм
+https://github.com/tailwindlabs/tailwindcss-forms // ссылка была на сайте tailwind
+npm install -D @tailwindcss/forms -->
+
+==== 6 ====
+npm install -D prettier prettier-plugin-tailwindcss // 5:35 минуте об этом говорит
+чтоб автоматически классы сортировались
