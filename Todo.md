@@ -98,6 +98,6 @@ extend: {
 https://github.com/tailwindlabs/tailwindcss-forms // ссылка была на сайте tailwind
 npm install -D @tailwindcss/forms -->
 
-==== 6 ====
+<!-- ==== 6 ====
 npm install -D prettier prettier-plugin-tailwindcss // 5:35 минуте об этом говорит
-чтоб автоматически классы сортировались
+чтоб автоматически классы сортировались -->
