@@ -22,3 +22,13 @@ DB_PASSWORD='8225991'
  <!-- "useTabs": true -->
 
  <!-- return await this.transactionRepository.save(newTransaction) -->
+
+ <!-- //=================================================================== -->
+
+<!-- https://vitejs.dev/guide/ -->
+
+<!-- 1.
+ npm create vite@latest ./  -->
+
+<!-- 2
+npm instal -->
