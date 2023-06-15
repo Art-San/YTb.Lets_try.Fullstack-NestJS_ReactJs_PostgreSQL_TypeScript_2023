@@ -1,6 +1,34 @@
 DB_PORT=5432
 DB_PASSWORD='8225991'
 
+# ИНТРО
+
+[x] - Обзор проэкта
+
+# BACKEND
+
+[x] - Создание проэкта
+[x] - Создание всех модулей
+[x] - Подключение к базе данных PostgresQl + Typeorm и создание всех таблиц
+[x] - Регистрация пользователя
+[x] - Auth Module + стратегии (local, jwt)
+[x] - Category Module
+[x] - Transaction Module
+[x] - Сщздание Guard'a для проверки владельца транзакций
+
+# Frontend
+
+[x] - Создание проэкта Vite, настройка Tailwind и создание всех страниц и компоннентов
+[x] - Роутинг + ErroPage + Header
+[x] - Создание instance axios и внедрение авторизации
+[x] - Защищенный Route + useAuth
+[x] - Страница Catigories
+[x] - Страница Transactions
+
+# Заключение
+
+[x] - Заключительное
+
 <!-- https://dbeaver.io/download/ для просмотра транзакций-->
 
 <!-- npm i --save @nestjs/config Для доступ к .ENV файлам -->
@@ -101,3 +129,7 @@ npm install -D @tailwindcss/forms -->
 <!-- ==== 6 ====
 npm install -D prettier prettier-plugin-tailwindcss // 5:35 минуте об этом говорит
 чтоб автоматически классы сортировались -->
+
+<!-- ==== 7 ====
+React-Icons
+npm install react-icons --save -->
