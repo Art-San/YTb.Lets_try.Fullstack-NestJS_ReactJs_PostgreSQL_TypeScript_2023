@@ -28,6 +28,7 @@ export class UserService {
     })
 
     const token = this.jwtService.sign({ email: createUserDto.email })
+    // delete user.password // ии посовеьовоал не отправлять пароль на слиент
     return { user, token }
   }
 

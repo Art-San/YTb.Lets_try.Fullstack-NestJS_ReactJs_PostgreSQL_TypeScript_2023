@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaBtc, FaSignOutAlt } from 'react-icons/fa'
+import { useAuth } from '../hooks/useAuth'
 
 const Header: FC = () => {
 	// const isAuth = true
-	const isAuth = false
+	const isAuth = useAuth()
 	return (
 		<header className=" flex items-center bg-slate-800 p-4 shadow-sm backdrop-blur-sm">
 			<Link to="/">

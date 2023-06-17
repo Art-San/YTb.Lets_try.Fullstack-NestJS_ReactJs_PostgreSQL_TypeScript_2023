@@ -5,7 +5,7 @@ export function getTokenFromLocalStorage(): string {
 	return token
 }
 
-export function setTokenFromLocalStorage(key: string, token: string): void {
+export function setTokenToLocalStorage(key: string, token: string): void {
 	localStorage.setItem(key, JSON.stringify(token))
 }
 
