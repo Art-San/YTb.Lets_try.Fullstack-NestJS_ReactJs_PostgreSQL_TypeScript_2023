@@ -21,3 +21,11 @@ export interface IResponeUserData {
 	token: string
 	user: IResponeUser
 }
+
+export interface ICategory {
+	title: string
+	id: number
+	createdAt: string
+	updatedAt: string
+	transactions: []
+}

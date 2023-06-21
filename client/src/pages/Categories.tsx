@@ -1,9 +1,10 @@
 import { FC, useState } from 'react'
 import { AiFillCloseCircle, AiFillEdit } from 'react-icons/ai'
-import { Form } from 'react-router-dom'
+import { Form, useLoaderData } from 'react-router-dom'
 import { FaPlus } from 'react-icons/fa'
 import CategoryModal from '../components/CategoryModal'
 import { instance } from '../api/axios.api'
+import { ICategory } from '../types/types'
 
 export const categoriesAction = async ({ request }: any) => {
 	switch (request.method) {
@@ -24,7 +25,14 @@ export const categoriesAction = async ({ request }: any) => {
 	}
 }
 
+export const categoryLoader = async () => {
+	const { data } = await instance.get<ICategory[]>('/categories')
+	return data
+}
+
 const Categories: FC = () => {
+	const categories = useLoaderData() as ICategory[]
+	console.log(categories)
 	const [visibLeModal, setVisibLeModal] = useState<boolean>(false)
 	return (
 		<>
@@ -49,7 +57,7 @@ const Categories: FC = () => {
 				</div>
 				{/* Add Category */}
 				<button
-					onClick={() => setVisibLeModal(!visibLeModal)}
+					onClick={() => setVisibLeModal(true)}
 					className="mt-5 flex max-w-fit items-center gap-2 text-white/50 hover:text-white"
 				>
 					<FaPlus />
