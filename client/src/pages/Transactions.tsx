@@ -1,11 +1,25 @@
 import { FC } from 'react'
+import TransactiomForm from '../components/TransactiomForm'
+
+export const transactionLoader = async () => {
+	const data = {}
+	return data
+}
+
+export const transactionAction = async ({ request }: any) => {
+	const data = {}
+	return data
+}
 
 const Transactions: FC = () => {
 	return (
 		<>
 			<div className="mt-4 grid grid-cols-3 items-start gap-4">
 				{/*Add Transactiom form */}
-				<div className="col-span-2 grid">Add Transactiom form</div>
+				<div className="col-span-2 grid">
+					<TransactiomForm />
+				</div>
+
 				{/*Statistic blocks */}
 				<div className="rounded-md bg-slate-800 p-3">
 					<div className="grid grid-cols-2 gap-3">
