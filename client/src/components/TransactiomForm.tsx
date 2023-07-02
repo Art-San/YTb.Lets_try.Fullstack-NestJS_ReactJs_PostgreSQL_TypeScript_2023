@@ -1,8 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Form } from 'react-router-dom'
+import { Form, Link, useLoaderData } from 'react-router-dom'
+import { IResponseTransactionLoader } from '../types/types'
+import CategoryModal from './CategoryModal'
 
 const TransactiomForm: FC = () => {
+	const [visibLeModal, setVisibLeModal] = useState<boolean>(false)
+	const { categories } = useLoaderData() as IResponseTransactionLoader
 	return (
 		<div className=" rounded-md bg-slate-800 p-4">
 			<Form className="grid gap-2" method="post" action="/transactions">
@@ -28,28 +32,43 @@ const TransactiomForm: FC = () => {
 				</label>
 
 				{/*Select */}
-				<label htmlFor="category" className=" grid">
-					<span>Category</span>
-					<select className="input border-slate-700 " name="category" required>
-						<option value="1" className=" bg-slate-700 ">
-							Salary
-						</option>
-						<option value="2" className=" bg-slate-700 ">
-							Gift
-						</option>
-						<option value="3" className=" bg-slate-700 ">
-							Grocery
-						</option>
-					</select>
-				</label>
+				{categories.length ? (
+					<label htmlFor="category" className=" grid">
+						<span>Category</span>
+						<select
+							className="input border-slate-700 "
+							name="category"
+							required
+						>
+							{categories.map((el) => (
+								<option key={el.id} value={el.id} className=" bg-slate-700 ">
+									{el.title}{' '}
+								</option>
+							))}
+							{/* <option value="1" className=" bg-slate-700 ">
+								Salary
+							</option>
+							<option value="2" className=" bg-slate-700 ">
+								Gift
+							</option>
+							<option value="3" className=" bg-slate-700 ">
+								Grocery
+							</option> */}
+						</select>
+					</label>
+				) : (
+					<p className=" mt-1 text-red-300">Нужно создать еатегорию</p>
+				)}
 
 				{/*ADD Category */}
 				<button
 					// onClick={() => setVisibLeModal(true)}
-					className="mt-5 flex max-w-fit items-center gap-2 text-white/50 hover:text-white"
+					className=" flex max-w-fit items-center gap-2 text-white/50 hover:text-white"
 				>
 					<FaPlus />
-					<span>Manage Catigories</span>
+					<Link to={'/categories'}>
+						<span>Manage Catigories</span>
+					</Link>
 				</button>
 
 				{/*Radio Buttons */}
@@ -78,6 +97,11 @@ const TransactiomForm: FC = () => {
 
 				<button className=" btn btn-green mt-2 max-w-fit">Submit</button>
 			</Form>
+
+			{/**ADD Category Modal */}
+			{visibLeModal && (
+				<CategoryModal type="post" setVisibLeModal={setVisibLeModal} />
+			)}
 		</div>
 	)
 }

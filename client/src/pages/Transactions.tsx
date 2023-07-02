@@ -1,8 +1,13 @@
 import { FC } from 'react'
+import { instance } from '../api/axios.api'
 import TransactiomForm from '../components/TransactiomForm'
+import { ICategory } from '../types/types'
 
 export const transactionLoader = async () => {
-	const data = {}
+	const categories = await instance.get<ICategory[]>('/categories')
+	const data = {
+		categories: categories.data,
+	}
 	return data
 }
 
