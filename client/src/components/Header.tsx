@@ -7,6 +7,12 @@ import { logout } from '../store/user/userSlice'
 import { removeTokenFromLocalStorage } from '../helpers/localstorage.helper'
 import { toast } from 'react-toastify'
 
+const menu = [
+	{ id: 1, path: '/', name: 'Home' },
+	{ id: 2, path: '/categories', name: 'Categories' },
+	{ id: 3, path: '/transactions', name: 'Transactions' },
+]
+
 const Header: FC = () => {
 	const isAuth = useAuth()
 	const dispatch = useAppDispatch()
@@ -27,36 +33,18 @@ const Header: FC = () => {
 			{isAuth && (
 				<nav className="ml-auto mr-10">
 					<ul className=" flex items-center gap-5">
-						<li>
-							<NavLink
-								to={'/'}
-								className={({ isActive }) =>
-									isActive ? 'text-white' : 'text-white/50'
-								}
-							>
-								Home
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to={'/categories'}
-								className={({ isActive }) =>
-									isActive ? 'text-white' : 'text-white/50'
-								}
-							>
-								Categories
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to={'/transactions'}
-								className={({ isActive }) =>
-									isActive ? 'text-white' : 'text-white/50'
-								}
-							>
-								Transactions
-							</NavLink>
-						</li>
+						{menu.map((el) => (
+							<li key={el.id}>
+								<NavLink
+									to={el.path}
+									className={({ isActive }) =>
+										isActive ? 'text-white' : 'text-white/50'
+									}
+								>
+									{el.name}
+								</NavLink>
+							</li>
+						))}
 					</ul>
 				</nav>
 			)}
