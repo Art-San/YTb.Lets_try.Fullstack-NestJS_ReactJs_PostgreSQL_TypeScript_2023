@@ -7,6 +7,7 @@ import CategoryModal from './CategoryModal'
 const TransactiomForm: FC = () => {
 	const [visibLeModal, setVisibLeModal] = useState<boolean>(false)
 	const { categories } = useLoaderData() as IResponseTransactionLoader
+
 	return (
 		<div className=" rounded-md bg-slate-800 p-4">
 			<Form className="grid gap-2" method="post" action="/transactions">
@@ -62,13 +63,13 @@ const TransactiomForm: FC = () => {
 
 				{/*ADD Category */}
 				<button
-					// onClick={() => setVisibLeModal(true)}
+					onClick={() => setVisibLeModal(true)}
 					className=" flex max-w-fit items-center gap-2 text-white/50 hover:text-white"
 				>
 					<FaPlus />
-					<Link to={'/categories'}>
-						<span>Manage Catigories</span>
-					</Link>
+					{/* <Link to={'/categories'}> */}
+					<span>Manage Catigories</span>
+					{/* </Link> */}
 				</button>
 
 				{/*Radio Buttons */}
@@ -79,6 +80,7 @@ const TransactiomForm: FC = () => {
 							name="type"
 							value={'income'}
 							className="form-radio text-green-600"
+							defaultChecked
 						/>
 						<span>Income</span>
 					</label>
@@ -86,7 +88,7 @@ const TransactiomForm: FC = () => {
 						<input
 							type="radio"
 							name="type"
-							value={'expens'}
+							value={'expense'}
 							className="form-radio text-red-600"
 						/>
 						<span>Expens</span>

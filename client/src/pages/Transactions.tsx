@@ -1,6 +1,8 @@
 import { FC } from 'react'
+import { toast } from 'react-toastify'
 import { instance } from '../api/axios.api'
 import TransactiomForm from '../components/TransactiomForm'
+import TransactionTable from '../components/TransactionTable'
 import { ICategory } from '../types/types'
 
 export const transactionLoader = async () => {
@@ -12,8 +14,24 @@ export const transactionLoader = async () => {
 }
 
 export const transactionAction = async ({ request }: any) => {
-	const data = {}
-	return data
+	switch (request.method) {
+		case 'POST': {
+			const formData = await request.formData()
+			console.log('formData', formData.get('type'))
+			toast.success('Транзакция добавлена')
+			// const newTransaction = {
+			// 	title: formData.get('title'),
+			// 	amount: +formData.get('amount'),
+			// 	category: formData.get('category'),
+			// 	type: formData.get('type'),
+			// }
+			// await instance.post('/transactions', newTransaction)
+			// toast.success('Транзакция добавлена')
+			return null
+		}
+		// case "DELETE": {
+		// }
+	}
 }
 
 const Transactions: FC = () => {
@@ -45,11 +63,15 @@ const Transactions: FC = () => {
 							</p>
 						</div>
 					</div>
-					<div className="">Chart</div>
+					<>Chart</>
 				</div>
 			</div>
+
 			{/*Transactions Table */}
-			<div className="mx-6 my-5">Table</div>
+			<h1 className="my-5">
+				хрень
+				<TransactionTable />
+			</h1>
 		</>
 	)
 }
