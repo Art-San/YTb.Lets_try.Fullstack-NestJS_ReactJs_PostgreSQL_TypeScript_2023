@@ -7,8 +7,10 @@ import { ICategory } from '../types/types'
 
 export const transactionLoader = async () => {
 	const categories = await instance.get<ICategory[]>('/categories')
+	const transactions = await instance.get('transactions')
 	const data = {
 		categories: categories.data,
+		transactions: transactions.data,
 	}
 	return data
 }
@@ -17,16 +19,15 @@ export const transactionAction = async ({ request }: any) => {
 	switch (request.method) {
 		case 'POST': {
 			const formData = await request.formData()
-			console.log('formData', formData.get('type'))
+
+			const newTransaction = {
+				title: formData.get('title'),
+				amount: +formData.get('amount'),
+				category: formData.get('category'),
+				type: formData.get('type'),
+			}
+			await instance.post('/transactions', newTransaction)
 			toast.success('Транзакция добавлена')
-			// const newTransaction = {
-			// 	title: formData.get('title'),
-			// 	amount: +formData.get('amount'),
-			// 	category: formData.get('category'),
-			// 	type: formData.get('type'),
-			// }
-			// await instance.post('/transactions', newTransaction)
-			// toast.success('Транзакция добавлена')
 			return null
 		}
 		// case "DELETE": {
@@ -66,10 +67,9 @@ const Transactions: FC = () => {
 					<>Chart</>
 				</div>
 			</div>
-
+			<TransactionTable />
 			{/*Transactions Table */}
 			<h1 className="my-5">
-				хрень
 				<TransactionTable />
 			</h1>
 		</>
