@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { toast } from 'react-toastify'
 import { instance } from '../api/axios.api'
+import TransactionTable from '../components/common/transactiontable'
 import TransactiomForm from '../components/TransactiomForm'
-import TransactionTable from '../components/TransactionTable'
 import { ICategory } from '../types/types'
 
 export const transactionLoader = async () => {
@@ -42,6 +42,7 @@ const Transactions: FC = () => {
 				{/*Add Transactiom form */}
 				<div className="col-span-2 grid">
 					<TransactiomForm />
+					<h1>фигня какаято</h1>
 				</div>
 
 				{/*Statistic blocks */}
@@ -67,11 +68,11 @@ const Transactions: FC = () => {
 					<>Chart</>
 				</div>
 			</div>
-			<TransactionTable />
+
 			{/*Transactions Table */}
-			<h1 className="my-5">
+			<p className="my-5">
 				<TransactionTable />
-			</h1>
+			</p>
 		</>
 	)
 }
