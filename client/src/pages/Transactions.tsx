@@ -70,9 +70,9 @@ const Transactions: FC = () => {
 			</div>
 
 			{/*Transactions Table */}
-			<p className="my-5">
+			<div className="my-5">
 				<TransactionTable />
-			</p>
+			</div>
 		</>
 	)
 }

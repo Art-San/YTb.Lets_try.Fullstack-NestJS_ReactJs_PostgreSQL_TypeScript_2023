@@ -23,7 +23,10 @@ const TableBody: FC = () => {
 								? `+ ${formatFoUSD.format(el.amount)}`
 								: `- ${formatFoUSD.format(el.amount)}`}
 						</th>
-						<th>{el.category.title}</th>
+						<th // у категории (?) есть тайтел отобрази || или 'Other' />/ Исправ ошибку при удал категории
+						>
+							{el.category?.title || 'Other'}
+						</th>
 						<th>{formatDate(el.createdAt)}</th>
 						<th>
 							<button className="btn hover:btn-red ml-auto">
