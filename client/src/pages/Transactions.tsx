@@ -1,16 +1,26 @@
 import { FC } from 'react'
+import { useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { instance } from '../api/axios.api'
 import TransactionTable from '../components/common/transactiontable'
 import TransactiomForm from '../components/TransactiomForm'
-import { ICategory } from '../types/types'
+import {
+	ICategory,
+	IResponseTransactionLoader,
+	ITransaction,
+} from '../types/types'
 
 export const transactionLoader = async () => {
 	const categories = await instance.get<ICategory[]>('/categories')
-	const transactions = await instance.get('/transactions')
+	const transactions = await instance.get<ITransaction[]>('/transactions')
+	const totalIncome = await instance.get<number>('/transactions/income/find')
+	const totalExpense = await instance.get<number>('/transactions/expense/find')
+
 	const data = {
 		categories: categories.data,
 		transactions: transactions.data,
+		totalIncome: totalIncome.data,
+		totalExpense: totalExpense.data,
 	}
 	return data
 }
@@ -42,6 +52,8 @@ export const transactionAction = async ({ request }: any) => {
 }
 
 const Transactions: FC = () => {
+	const { totalIncome, totalExpense } =
+		useLoaderData() as IResponseTransactionLoader
 	return (
 		<>
 			<div className="mt-4 grid grid-cols-3 items-start gap-4">
@@ -59,7 +71,7 @@ const Transactions: FC = () => {
 								Total Incom:
 							</p>
 							<p className=" mt-2 rounded-sm bg-green-600 p-1 text-center">
-								1800$
+								{totalIncome}
 							</p>
 						</div>
 						<div>
@@ -67,7 +79,7 @@ const Transactions: FC = () => {
 								Total Expens:
 							</p>
 							<p className=" mt-2 rounded-sm bg-red-600 p-1 text-center">
-								1800$
+								{totalExpense}
 							</p>
 						</div>
 					</div>
@@ -77,10 +89,11 @@ const Transactions: FC = () => {
 
 			{/*Transactions Table */}
 			<div className="my-5">
-				<TransactionTable />
+				<TransactionTable limit={3} />
 			</div>
 		</>
 	)
 }
 
 export default Transactions
+// 13-26-25
