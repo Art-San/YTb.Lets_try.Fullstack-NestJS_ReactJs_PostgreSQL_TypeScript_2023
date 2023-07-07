@@ -2,8 +2,10 @@ import { FC } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { instance } from '../api/axios.api'
+import Chart from '../components/common/Chart'
 import TransactionTable from '../components/common/transactiontable'
 import TransactiomForm from '../components/TransactiomForm'
+import { formatFoUSD } from '../helpers/currency.helper'
 import {
 	ICategory,
 	IResponseTransactionLoader,
@@ -71,7 +73,7 @@ const Transactions: FC = () => {
 								Total Incom:
 							</p>
 							<p className=" mt-2 rounded-sm bg-green-600 p-1 text-center">
-								{totalIncome}
+								{formatFoUSD.format(totalIncome)}
 							</p>
 						</div>
 						<div>
@@ -79,11 +81,11 @@ const Transactions: FC = () => {
 								Total Expens:
 							</p>
 							<p className=" mt-2 rounded-sm bg-red-600 p-1 text-center">
-								{totalExpense}
+								{formatFoUSD.format(totalExpense)}
 							</p>
 						</div>
 					</div>
-					<>Chart</>
+					<Chart totalIncome={totalIncome} totalExpense={totalExpense} />
 				</div>
 			</div>
 
