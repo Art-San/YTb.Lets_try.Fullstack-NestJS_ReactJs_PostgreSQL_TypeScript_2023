@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { FaTrash } from 'react-icons/fa'
-import { useLoaderData } from 'react-router-dom'
+import { Form, useLoaderData } from 'react-router-dom'
 import { formatFoUSD } from '../../../helpers/currency.helper'
 import { formatDate } from '../../../helpers/date.helper'
 import { IResponseTransactionLoader } from '../../../types/types'
@@ -29,9 +29,12 @@ const TableBody: FC = () => {
 						</th>
 						<th>{formatDate(el.createdAt)}</th>
 						<th>
-							<button className="btn hover:btn-red ml-auto">
-								<FaTrash />
-							</button>
+							<Form method="delete" action="/transactions">
+								<input type="hidden" name="id" value={el.id} />
+								<button className="btn hover:btn-red ml-auto">
+									<FaTrash />
+								</button>
+							</Form>
 						</th>
 					</tr>
 				))

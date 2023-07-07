@@ -7,7 +7,7 @@ import { ICategory } from '../types/types'
 
 export const transactionLoader = async () => {
 	const categories = await instance.get<ICategory[]>('/categories')
-	const transactions = await instance.get('transactions')
+	const transactions = await instance.get('/transactions')
 	const data = {
 		categories: categories.data,
 		transactions: transactions.data,
@@ -30,8 +30,14 @@ export const transactionAction = async ({ request }: any) => {
 			toast.success('Транзакция добавлена')
 			return null
 		}
-		// case "DELETE": {
-		// }
+		case 'DELETE': {
+			const formData = await request.formData()
+
+			const transactionId = formData.get('id')
+			await instance.delete(`/transactions/transaction/${transactionId}`)
+			toast.success('Транзакция удалена')
+			return null
+		}
 	}
 }
 
