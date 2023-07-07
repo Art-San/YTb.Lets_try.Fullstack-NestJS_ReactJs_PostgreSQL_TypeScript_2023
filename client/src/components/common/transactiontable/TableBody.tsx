@@ -19,7 +19,9 @@ const TableBody: FC = () => {
 								el.type === 'income' ? 'text-green-500' : 'text-red-500'
 							}
 						>
-							{formatFoUSD.format(el.amount)}
+							{el.type === 'income'
+								? `+ ${formatFoUSD.format(el.amount)}`
+								: `- ${formatFoUSD.format(el.amount)}`}
 						</th>
 						<th>{el.category.title}</th>
 						<th>{formatDate(el.createdAt)}</th>
